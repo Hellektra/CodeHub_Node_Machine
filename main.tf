@@ -26,7 +26,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg"{                    #resource group is called "rg"???
 
-  name = "project-codehub-reg_node_machine"
+  name = "project-codehub-reg"
   location = var.location
 }
 
@@ -109,7 +109,7 @@ resource "azurerm_network_interface_security_group_association" "nisga" {
 
 # Create virtual machine
 resource "azurerm_virtual_machine" "vm" {
-  name                  = "project-codehub-vm"
+  name                  = "node_machine"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.netif.id]
