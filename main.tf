@@ -24,8 +24,13 @@ provider "azurerm" {
 #A Resource Group is a container that holds a collection of resources.
 #The Azure Resource Manager is the service that is responsible for creating, updating and deleting the resources of an Azure account.
 
-resource "azurerm_resource_group" "rg"{                    #resource group is called "rg"???
+#resource "azurerm_resource_group" "rg"{                    #resource group is called "rg"???
 
+#  name = "project-codehub-reg"
+#  location = var.location
+#}
+
+data "azurerm_resource_group" "rg" {
   name = "project-codehub-reg"
   location = var.location
 }
