@@ -122,7 +122,7 @@ resource "azurerm_network_interface_security_group_association" "nisga" {
 
 # Create virtual machine
 resource "azurerm_virtual_machine" "vm" {
-  name                  = "node_machine"
+  name                  = "node-machine"
   location              = data.azurerm_resource_group.rg.location
   resource_group_name   = data.azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.netif.id]
@@ -146,7 +146,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   os_profile {
-    computer_name  = "hostname_node"
+    computer_name  = "hostname-node"
     admin_username = var.admin_username
     admin_password = var.admin_password
   }
