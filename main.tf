@@ -102,7 +102,7 @@ resource "azurerm_network_security_group" "nsg_node_machine" {
 
 # Create network interface
 resource "azurerm_network_interface" "netif" {
-  name                = "project-codehub-nic"
+  name                = "project-codehub-nic_node"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
 
