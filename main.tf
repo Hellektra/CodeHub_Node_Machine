@@ -56,17 +56,17 @@ resource "azurerm_subnet" "subnet" {
 }
 
 # Create public IP
-#resource "azurerm_public_ip" "pubip" {
-#  name                = "project-codehub-PublicIp"
-#  resource_group_name = data.azurerm_resource_group.rg.name
-#  location            = data.azurerm_resource_group.rg.location
-#  allocation_method   = "Static"
-#}
-
-data "azurerm_public_ip" "pubip" {
-  name = "project-codehub-PublicIp"
-  resource_group_name  = data.azurerm_resource_group.rg.name
+resource "azurerm_public_ip" "pubip" {
+  name                = "project-codehub-PublicIp_node"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+  allocation_method   = "Static"
 }
+
+#data "azurerm_public_ip" "pubip" {
+#  name = "project-codehub-PublicIp"
+#  resource_group_name  = data.azurerm_resource_group.rg.name
+#}
 
 #Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg_node_machine" {
