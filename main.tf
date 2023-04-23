@@ -32,7 +32,7 @@ provider "azurerm" {
 
 data "azurerm_resource_group" "rg" {
   name = "project-codehub-reg"
-  location = var.location
+  location = "northeurope"
 }
 
 #Create virtual network
