@@ -34,13 +34,17 @@ data "azurerm_resource_group" "rg" {
   name = "project-codehub-reg"
 }
 
-#Create virtual network
-resource "azurerm_virtual_network" "vnet"{ 
-  name                = "project-codehub-network"
-  location            = data.azurerm_resource_group.rg.location        #location is the same as the resource group's
-  resource_group_name = data.azurerm_resource_group.rg.name            #belongs in the resource group created above
-  address_space       = ["10.0.0.0/16"]
+data "azurerm_virtual_network" "vnet"{ 
+  name = "project-codehub-network"
 }
+
+#Create virtual network
+#resource "azurerm_virtual_network" "vnet"{ 
+#  name                = "project-codehub-network"
+#  location            = data.azurerm_resource_group.rg.location        #location is the same as the resource group's
+#  resource_group_name = data.azurerm_resource_group.rg.name            #belongs in the resource group created above
+#  address_space       = ["10.0.0.0/16"]
+#}
 
 #Create a subnet
 resource "azurerm_subnet" "subnet" {
