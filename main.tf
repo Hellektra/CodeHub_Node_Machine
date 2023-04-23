@@ -110,7 +110,7 @@ resource "azurerm_network_interface" "netif" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id          #will have the id of the subnet created above
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = data.azurerm_public_ip.pubip.id
+    public_ip_address_id          = azurerm_public_ip.pubip.id
   }
 }
 
