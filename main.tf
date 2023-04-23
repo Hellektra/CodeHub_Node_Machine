@@ -51,7 +51,7 @@ data "azurerm_virtual_network" "vnet"{
 resource "azurerm_subnet" "subnet" {
   name                 = "node-subnet"
   resource_group_name  = data.azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name          #The subnet is part of the virtual network created above
+  virtual_network_name = data.azurerm_virtual_network.vnet.name          #The subnet is part of the virtual network created above
   address_prefixes     = ["10.0.2.0/24"]
 }
 
