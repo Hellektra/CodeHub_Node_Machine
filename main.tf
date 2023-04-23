@@ -69,7 +69,7 @@ data "azurerm_public_ip" "pubip" {
 }
 
 #Create Network Security Group and rule
-resource "azurerm_network_security_group" "nsg" {
+resource "azurerm_network_security_group" "nsg_node_machine" {
   name                = "project-codehub-acceptanceTestSecurityGroup1"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
@@ -86,7 +86,7 @@ resource "azurerm_network_security_group" "nsg" {
     destination_address_prefix = "*"
   }
 
-#Rule to publish port 8080 for jenkins
+#Rule to publish port 8080
   security_rule {
     name                       = "AccessPort"
     priority                   = 1001
