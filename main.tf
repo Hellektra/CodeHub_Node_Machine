@@ -139,14 +139,14 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "myosdisk_node"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = "hostname_node"
     admin_username = var.admin_username
     admin_password = var.admin_password
   }
