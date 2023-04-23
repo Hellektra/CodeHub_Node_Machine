@@ -36,6 +36,7 @@ data "azurerm_resource_group" "rg" {
 
 data "azurerm_virtual_network" "vnet"{ 
   name = "project-codehub-network"
+  resource_group_name  = data.azurerm_resource_group.rg.name
 }
 
 #Create virtual network
