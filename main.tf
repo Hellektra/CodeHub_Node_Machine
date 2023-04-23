@@ -70,7 +70,7 @@ data "azurerm_public_ip" "pubip" {
 
 #Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg_node_machine" {
-  name                = "project-codehub-acceptanceTestSecurityGroup1"
+  name                = "project-codehub-acceptanceTestSecurityGroup2"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
 
