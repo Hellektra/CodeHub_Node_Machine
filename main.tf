@@ -38,15 +38,15 @@ data "azurerm_resource_group" "rg" {
 #Create virtual network
 resource "azurerm_virtual_network" "vnet"{ 
   name                = "project-codehub-network"
-  location            = azurerm_resource_group.rg.location        #location is the same as the resource group's
-  resource_group_name = azurerm_resource_group.rg.name            #belongs in the resource group created above
+  location            = data.azurerm_resource_group.rg.location        #location is the same as the resource group's
+  resource_group_name = data.azurerm_resource_group.rg.name            #belongs in the resource group created above
   address_space       = ["10.0.0.0/16"]
 }
 
 #Create a subnet
 resource "azurerm_subnet" "subnet" {
   name                 = "node-subnet"
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name          #The subnet is part of the virtual network created above
   address_prefixes     = ["10.0.2.0/24"]
 }
@@ -54,8 +54,8 @@ resource "azurerm_subnet" "subnet" {
 # Create public IP
 resource "azurerm_public_ip" "pubip" {
   name                = "project-codehub-PublicIp"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
   allocation_method   = "Static"
 
 }
@@ -63,8 +63,8 @@ resource "azurerm_public_ip" "pubip" {
 #Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
   name                = "project-codehub-acceptanceTestSecurityGroup1"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   security_rule {
     name                       = "SSH"
@@ -95,8 +95,8 @@ resource "azurerm_network_security_group" "nsg" {
 # Create network interface
 resource "azurerm_network_interface" "netif" {
   name                = "project-codehub-nic"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "internal"
@@ -115,8 +115,8 @@ resource "azurerm_network_interface_security_group_association" "nisga" {
 # Create virtual machine
 resource "azurerm_virtual_machine" "vm" {
   name                  = "node_machine"
-  location              = azurerm_resource_group.rg.location
-  resource_group_name   = azurerm_resource_group.rg.name
+  location              = data.azurerm_resource_group.rg.location
+  resource_group_name   = data.azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.netif.id]
   vm_size               = "Standard_DS1_v2"
 
