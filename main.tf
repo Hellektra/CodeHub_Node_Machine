@@ -117,7 +117,7 @@ resource "azurerm_network_interface" "netif" {
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "nisga" {
   network_interface_id      = azurerm_network_interface.netif.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.nsg_node_machine.id
 }
 
 # Create virtual machine
